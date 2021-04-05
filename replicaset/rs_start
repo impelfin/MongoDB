@@ -1,0 +1,12 @@
+rsconf = {
+_id : "replica",
+members : [
+	{_id:0, host:"127.0.0.1:26026", priority:2},
+	{_id:1, host:"127.0.0.1:26027", priority:1},
+	{_id:2, host:"127.0.0.1:26028", priority:1, arbiterOnly : true }
+	]
+}
+
+rs.initiate(rsconf)
+
+rs.status()

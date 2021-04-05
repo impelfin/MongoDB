@@ -1,0 +1,34 @@
+use test
+db.ord.save( { 
+	ord_id : "2013-09-05", 
+	customer_name : "wonam", 
+	emp_nam : "magee", 
+	total : "253000", 
+	payment_type : "Credit", 
+	order_filled : "y" 
+} )
+
+db.ord_detail.save( {
+	ord_id : "2013-09-05",
+	item_id : [ { 
+			item_id : "1", 
+			product_name : "bunny", 
+			item_price : "170", 
+			qty : "500", 
+			price : "85000" 
+		}, { 
+			item_id : "2", 
+			product_name : "pro ski", 
+			item_price : "420", 
+			qty : "400", 
+			price : "168000" 
+		} ],
+	reference : [{"$ref" : "ord","$id" : "2013-09-05"}]
+} )
+var detail=db.ord_detail.findOne({ord_id:"2013-09-05"})
+detail.reference.forEach(function(ref) {
+	printjson(db[ref.$ref].findOne({ord_id:ref.$id}))
+})
+
+db.ord.drop()
+db.ord_detail.drop()
