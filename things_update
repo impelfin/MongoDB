@@ -1,3 +1,0 @@
-use test
-db.things.update({empno:1102}, {$set : {dept:"human"}})
-db.things.find()

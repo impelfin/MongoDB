@@ -1,0 +1,28 @@
+use test
+db.ord.insert( { 
+	ord_id : "2013-09-05", 
+	customer_name : "wonam", 
+	emp_nam : "magee", 
+	total : "253000", 
+	payment_type : "Credit", 
+	order_filled : "y" 
+} )
+
+db.ord.update( { ord_id : "2013-09-05" }, 
+{ $set : {
+	item_id : [ { 
+		item_id : "1", 
+		product_name : "bunny", 
+		item_price : "170", 
+		qty : "500", 
+		price : "85000" 
+	}, { 
+		item_id : "2", 
+		product_name : "pro ski", 
+		item_price : "420", 
+		qty : "400", 
+		price : "168000" 
+	} ]
+}	
+} )
+db.ord.find()
