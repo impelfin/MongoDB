@@ -13,7 +13,7 @@ second4=$(echo ${shard2} | cut -d " " -f2)
 for var in $second1 $second2 $second3 $second4
 do
 	echo $var
-	if [ -n "${var}" ]
+	if [ -f ${var} ]
 	then
 		result=$(kill -9 ${var}) 
 		echo process is killed.
